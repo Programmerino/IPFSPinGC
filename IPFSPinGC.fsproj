@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RuntimeIdentifiers Condition="'$(target)' == ''">linux-x64</RuntimeIdentifiers>
+    <RuntimeIdentifiers Condition="'$(target)' != ''">$(target)</RuntimeIdentifiers>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <PublishTrimmed>true</PublishTrimmed>
+    <TrimMode>link</TrimMode>
+    <AutoreleasePoolSupport>false</AutoreleasePoolSupport>
+    <DebuggerSupport>false</DebuggerSupport>
+    <EnableUnsafeBinaryFormatterSerialization>false</EnableUnsafeBinaryFormatterSerialization>
+    <EnableUnsafeUTF7Encoding>false</EnableUnsafeUTF7Encoding>
+    <EventSourceSupport>false</EventSourceSupport>
+    <StartupHookSupport>false</StartupHookSupport>
+    <HttpActivityPropagationSupport>false</HttpActivityPropagationSupport>
+    <MetadataUpdaterSupport>false</MetadataUpdaterSupport>
+    <UseNativeHttpHandler>true</UseNativeHttpHandler>
+    <UseSystemResourceKeys>true</UseSystemResourceKeys>
+    <CustomResourceTypesSupport>false</CustomResourceTypesSupport>
+    <EnableUnsafeBinaryFormatterInDesigntimeLicenseContextSerialization>false</EnableUnsafeBinaryFormatterInDesigntimeLicenseContextSerialization>
+    <BuiltInComInteropSupport>false</BuiltInComInteropSupport>
+    <EnableCppCLIHostActivation>false</EnableCppCLIHostActivation>
+    <MetadataUpdaterSupport>false</MetadataUpdaterSupport>
+    <_EnableConsumingManagedCodeFromNativeHosting>false</_EnableConsumingManagedCodeFromNativeHosting>
+    <NullabilityInfoContextSupport>false</NullabilityInfoContextSupport>
+    <_AggressiveAttributeTrimming>true</_AggressiveAttributeTrimming>
+    <DebugSymbols>false</DebugSymbols>
+    <NativeDebugSymbols>false</NativeDebugSymbols>
+    <TrimmerRemoveSymbols>true</TrimmerRemoveSymbols>
+    <!-- <TrimmerDefaultAction>link</TrimmerDefaultAction> -->
+    <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+    <PackageId Condition="'$(name)' == ''">IPFSPinGC</PackageId>
+    <PackageId Condition="'$(name)' != ''">$(name)</PackageId>
+    <Version Condition="'$(version)' == ''">0.0.0</Version>
+    <Version Condition="'$(version)' != ''">$(version)</Version>
+    <Authors>Davis Davalos-DeLosh</Authors>
+    <Company>Davis Davalos-DeLosh</Company>
+    <PackageDescription>...</PackageDescription>
+    <RepositoryUrl Condition="'$(name)' == ''">https://github.com/Programmerino/IPFSPinGC</RepositoryUrl>
+    <RepositoryUrl Condition="'$(name)' != ''">https://github.com/Programmerino/$(name)</RepositoryUrl>
+</PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Argu" Version="6.1.1" />
+    <PackageReference Include="FSharp.Control.Reactive" Version="5.0.2" />
+    <RdXmlFile Include="FSharp.Core.xml" />
+    <PackageReference Include="FSharp.Core" Version="6.0.2" />
+    <PackageReference Include="FSharpPlus" Version="1.2.2" />
+    <PackageReference Include="FSharp.Data" Version="4.2.7" />
+    <PackageReference Include="Fable.Remoting.Json" Version="2.18.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <RuntimeHostConfigurationOption Include="Switch.System.Reflection.Disabled.DoNotThrowForNames" Value="true" />
+    <RuntimeHostConfigurationOption Include="Switch.System.Reflection.Disabled.DoNotThrowForAssembly" Value="true" />
+    <RuntimeHostConfigurationOption Include="Switch.System.Reflection.Disabled.DoNotThrowForAttributes" Value="true" />
+    <RuntimeHostConfigurationOption Include="Switch.System.Reflection.Assembly.SimulatedCallingAssembly" Value="true" />
+    <Compile Include="./pinAPI/StringEnum.fs" />
+    <Compile Include="./pinAPI/OpenApiHttp.fs" />
+    <Compile Include="./pinAPI/Types.fs" />
+    <Compile Include="./pinAPI/Client.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+</Project>

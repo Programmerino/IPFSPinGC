@@ -1,0 +1,7 @@
+{
+    "schema": "https://raw.githubusercontent.com/ipfs/pinning-services-api-spec/main/ipfs-pinning-service.yaml",
+    "project": "pinAPI",
+    "output": "pinAPI",
+    "resolveReferences": false,
+    "emptyDefinitions": "free-form"
+}

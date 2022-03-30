@@ -1,0 +1,41 @@
+name: "Package"
+on:
+  push:
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.10
+        with:
+          versionSpec: '5.x'
+          includePrerelease: true
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
+      - uses: cachix/install-nix-action@v16
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+      - uses: cachix/cachix-action@v10
+        with:
+          name: programmerino
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - name: Determine Version
+        id:   gitversion
+        uses: gittools/actions/gitversion/execute@v0.9.10
+      - run: nix-shell --run "dotnet nuget add source --username Programmerino --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github \"https://nuget.pkg.github.com/Programmerino/index.json\" || true"
+      - run: nix build .#nuget --impure -L
+      - run: echo "nupkgFile=./result/$(ls ./result | head -n 1)" >> $GITHUB_ENV
+      - run: nix-shell --run "dotnet nuget push \"${{ env.nupkgFile }}\"  --api-key ${{ secrets.GITHUB_TOKEN }} --source \"github\""
+      - run: nix build .#release --impure -L
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          title: "${{ steps.gitversion.outputs.FullSemVer}}"
+          automatic_release_tag: "latest"
+          prerelease: ${{ steps.gitversion.outputs.preReleaseLabel != '' }}
+          files: |
+            ./result/*
