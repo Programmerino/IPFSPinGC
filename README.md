@@ -13,7 +13,7 @@ and ultimately build with `nix build` which will place a binary in `result`.
 
 ## Installation
 
-If you have Nix installed, you can use `nix profile add github:Programmerino/IPFSPinGC` or `nix run github:Programmerino/IPFSPinGC` to try it without installation. Otherwise, you can try one of the GitHub releases or building it from source without Nix
+If you have Nix installed, you can use `nix profile install github:Programmerino/IPFSPinGC` or `nix run github:Programmerino/IPFSPinGC` to try it without installation. Otherwise, you can try one of the GitHub releases or building it from source without Nix
 
 ## Usage
 

@@ -29,15 +29,15 @@
       "locked": {
         "lastModified": 1648671993,
         "narHash": "sha256-xb1EdOqgDSzuFDntQCk7tZBfjnncSevCs7d65fc61FY=",
-        "ref": "main",
+        "owner": "Programmerino",
+        "repo": "dotnet-nix",
         "rev": "ed6e98973c15cb1a072b7bb2921e9a1af95ee342",
-        "revCount": 17,
-        "type": "git",
-        "url": "file:///home/davis/Documents/Personal/CSProjects/dotnet-nix"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/davis/Documents/Personal/CSProjects/dotnet-nix"
+        "owner": "Programmerino",
+        "repo": "dotnet-nix",
+        "type": "github"
       }
     },
     "fable": {
@@ -230,11 +230,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1648671894,
-        "narHash": "sha256-RwyN1qphlxtbKlkVsWj1Z6VjrLns5XAfNEJ60mjfOBY=",
+        "lastModified": 1648681698,
+        "narHash": "sha256-+352TESgZk6n3CJccsgLHEGDRVBd1ljQHo6K8y65Pf8=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "90c46e80c66d1616882ea472d536e5c3f8a7857a",
+        "rev": "2035fe0ec8f5dcb5e8c2e69798c15bf7b14d6dbd",
         "type": "github"
       },
       "original": {
