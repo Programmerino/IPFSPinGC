@@ -26,11 +26,16 @@ jobs:
       - name: Determine Version
         id:   gitversion
         uses: gittools/actions/gitversion/execute@v0.9.10
-      - run: nix-shell --run "dotnet nuget add source --username Programmerino --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github \"https://nuget.pkg.github.com/Programmerino/index.json\" || true"
       - run: nix build .#nuget --impure -L
       - run: echo "nupkgFile=./result/$(ls ./result | head -n 1)" >> $GITHUB_ENV
-      - run: nix-shell --run "dotnet nuget push \"${{ env.nupkgFile }}\"  --api-key ${{ secrets.GITHUB_TOKEN }} --source \"github\""
       - run: nix build .#release --impure -L
+  release:
+    runs-on: ubuntu-latest
+    needs: package
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - run: nix-shell --run "dotnet nuget add source --username Programmerino --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github \"https://nuget.pkg.github.com/Programmerino/index.json\" || true"
+      - run: nix-shell --run "dotnet nuget push \"${{ env.nupkgFile }}\"  --api-key ${{ secrets.GITHUB_TOKEN }} --source \"github\""
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
