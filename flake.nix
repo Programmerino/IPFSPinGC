@@ -7,7 +7,7 @@
 
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
-  inputs.dotnet.url = "/home/davis/Documents/Personal/CSProjects/dotnet-nix";
+  inputs.dotnet.url = "github:Programmerino/dotnet-nix";
 
   inputs.bundler.url = "github:NixOS/bundlers";
 
